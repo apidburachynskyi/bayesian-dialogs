@@ -1,8 +1,11 @@
+#%%
+
 import numpy as np
 import matplotlib.pyplot as plt
 import argparse
 import yaml
 
+#%%
 class posterior_probability_computation :
 
   def __init__(self,N,partition_1,partition_2,A,w) :
@@ -275,6 +278,7 @@ class posterior_probability_computation :
     plt.show()
     plt.close()
 
+#%%
 ### Main
 def main_run(N, partition_1, partition_2, A, w,visualisations = True) :
 
@@ -285,6 +289,8 @@ def main_run(N, partition_1, partition_2, A, w,visualisations = True) :
     my_experiment.visualisations(list_qt_alpha_proba, list_qt_beta_proba)
 
   return lenght
+
+#%%
 
 if __name__=='__main__': 
     
@@ -310,3 +316,5 @@ if __name__=='__main__':
 
 
       
+
+# %%
