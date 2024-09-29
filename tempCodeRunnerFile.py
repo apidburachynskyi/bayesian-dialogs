@@ -306,7 +306,3 @@ if __name__=='__main__':
         data = yaml.safe_load(yaml_file)
 
     main_run(N=data['N'],partition_1=data['partition_1'],partition_2=data['partition_2'],A=data['A'],w=data['w'],visualisations=True)
-
-
-
-      
