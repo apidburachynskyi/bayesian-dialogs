@@ -4,22 +4,21 @@ import numpy as np
 import matplotlib.pyplot as plt
 import argparse
 import yaml
+import os
 
 #%%
 class posterior_probability_computation :
 
-  def __init__(self,N,partition_1,partition_2,A,w) :
+  def __init__(self,partition_1,partition_2,A,w) :
       """Initialization for the class. 
 
       Args:
-          N (int): size of the universe.
           partition_1 (list): partition of the player alpha.
           partition_2 (list): partition of the player alpha.
           A (list): event we which to know the probability.
           w (int): event that occurs.  
       """
 
-      self.N = N
       self.partition_1 = partition_1
       self.partition_2 = partition_2
       self.A = A
@@ -202,17 +201,11 @@ class posterior_probability_computation :
     b_1 = self.find_sets1(self.A,self.w,a_1_transformed,self.partition_2,q1_beta_proba) 
     b_1_transformed = self.transforms_sets_of_sets(b_1) 
 
-    # print("partitions ini")
-    # print(partition_ini_alpha)
-    # print(partition_ini_beta)
-
     t = 1
 
     qt_alpha_proba = q1_alpha_proba
     qt_beta_proba = q1_beta_proba
     b_before = b_1_transformed
-
-    #print('qt_alpha_proba : {}\nqt_beta_proba : {}\n'.format(np.round(qt_alpha_proba,2),np.round(qt_beta_proba,2)))
 
     list_qt_alpha_proba.append(qt_alpha_proba)
     list_qt_beta_proba.append(qt_beta_proba)
@@ -225,12 +218,7 @@ class posterior_probability_computation :
     b_before = self.transforms_sets_of_sets(bt)
     t = 2
 
-    # print("partitions")
-    # print(partition_alpha)
-    # print(partition_beta)
     while qt_alpha_proba != qt_beta_proba:
-
-        #print('qt_alpha_proba : {}\nqt_beta_proba : {}\n'.format(np.round(qt_alpha_proba,2),np.round(qt_beta_proba,2)))
 
         list_qt_alpha_proba.append(qt_alpha_proba)
         list_qt_beta_proba.append(qt_beta_proba)
@@ -240,26 +228,15 @@ class posterior_probability_computation :
         a_t_transformed = self.transforms_sets_of_sets(at)
         qt_beta_proba, partition_beta = self.qt_beta(self.A,self.w,self.partition_2,a_t_transformed)
         bt = self.b_t(self.A,self.w,a_t_transformed,self.partition_2,qt_beta_proba)
-
-        # print("partitions")
-        # print(partition_alpha)
-        # print(partition_beta)        
+      
         t +=1
-        #print(t)
         b_before = self.transforms_sets_of_sets(bt)
-        #print(b_before)
-        #print(a_t_transformed)
-        print(at)
-        print(bt)
+
         if t > 10:
             break
 
     list_qt_alpha_proba.append(qt_alpha_proba)
     list_qt_beta_proba.append(qt_beta_proba)
-    print(t)
-
-    #print('End\n')
-    #print('qt_alpha_proba : {}\nqt_beta_proba : {}\n'.format(np.round(qt_alpha_proba,2),np.round(qt_beta_proba,2)))
 
     return list_qt_alpha_proba, list_qt_beta_proba, len(self.joint_partition([partition_alpha],self.join_initial_partition)), t
 
@@ -267,22 +244,29 @@ class posterior_probability_computation :
   def visualisations(self,list_qt_alpha_proba, list_qt_beta_proba) :
 
     Time_steps = np.arange(0,len(list_qt_alpha_proba))
-    plt.figure(figsize=(5,5))
+
+    fig = plt.figure(figsize=(10,5))
     plt.grid()
-    plt.plot(Time_steps,list_qt_alpha_proba,label='alpha')
-    plt.plot(Time_steps,list_qt_beta_proba,label='beta')
-    plt.xlabel('Iteration number')
+    plt.plot(Time_steps,list_qt_alpha_proba,label='α')
+    plt.plot(Time_steps,list_qt_beta_proba,label='β')
+    plt.xlabel('Iteration number (t)')
     plt.ylabel('Posterior probabilities')
     plt.xticks(np.arange(0, len(list_qt_alpha_proba), step=1))
     plt.legend()
     plt.show()
+
+    if not os.path.exists('results'):
+        os.makedirs('results')
+
+    fig.savefig('results/posterior_probabilities.png')
+
     plt.close()
 
 #%%
 ### Main
-def main_run(N, partition_1, partition_2, A, w,visualisations = True) :
+def main_run(partition_1, partition_2, A, w, visualisations = True) :
 
-  my_experiment = posterior_probability_computation(N=N,partition_1=partition_1,partition_2=partition_2,A=A,w=w)
+  my_experiment = posterior_probability_computation(partition_1=partition_1,partition_2=partition_2,A=A,w=w)
   list_qt_alpha_proba, list_qt_beta_proba, lenght, t= my_experiment.run()
 
   if visualisations :
@@ -293,17 +277,6 @@ def main_run(N, partition_1, partition_2, A, w,visualisations = True) :
 #%%
 
 if __name__=='__main__': 
-    
-    ### With the parser 
- 
-    #parser = argparse.ArgumentParser()
-    #parser.add_argument('-N', type=int, default=9, help='Size of the universe')
-    #parser.add_argument('-w', type=int, default=1, help='Weight')
-    #partition_1 = [[1,2,3],[4,5,6],[7,8,9]]
-    #partition_2 = [[1,2,3,4],[5,6,7,8],[9]]
-    #A = [1,5,9]
-    #args = parser.parse_args()
-    #main(N=args.N,partition_1=partition_1,partition_2=partition_2,A=A,w=args.w)
 
     ### With yaml file 
 
@@ -311,7 +284,7 @@ if __name__=='__main__':
     with open('config.yaml', 'r') as yaml_file:
         data = yaml.safe_load(yaml_file)
 
-    main_run(N=data['N'],partition_1=data['partition_1'],partition_2=data['partition_2'],A=data['A'],w=data['w'],visualisations=True)
+    main_run(partition_1=data['partition_1'],partition_2=data['partition_2'],A=data['A'],w=data['w'],visualisations=True)
 
 
 

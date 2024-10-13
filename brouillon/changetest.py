@@ -45,7 +45,6 @@ def experiment(N_min = 10, N_max = 50, n_tests_per_n = 50) :
                     dic_direction1['{}'.format(N)]+=1
                 elif changes(directions(list_qt_alpha_proba)) == 2 or changes(directions(list_qt_beta_proba)) == 2 :
                     dic_direction2['{}'.format(N)]+=1
-                    #print("P1",partition_1,"P2",partition_2,"A",A,"w",w)
                 elif changes(directions(list_qt_alpha_proba)) == 3 or changes(directions(list_qt_beta_proba)) == 3 :
                     continue
         dic_direction1['{}'.format(N)]=dic_direction1['{}'.format(N)]/n_tests_per_n
