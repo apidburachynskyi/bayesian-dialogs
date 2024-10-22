@@ -44,7 +44,7 @@ python run.py
 
 Excepected results:
 
-![Expected results for the bayesian dialogs with two agents α and β. The probabilities at t=0 correspond to the prior. Here the process terminates as expected with two iterations.](results/posterior_probabilities.png)
+![Expected results for the bayesian dialogs with two agents α and β. The probabilities at t=0 correspond to the prior. Here the process terminates as expected with two iterations.](results/posterior_probabilities_.png)
 
 Additionally to this pipeline, we also provide a test.py to check the resilience of the code, including:
 * Test of the code with random args.

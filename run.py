@@ -295,7 +295,7 @@ class posterior_probability_computation:
         if not os.path.exists("results"):
             os.makedirs("results")
 
-        fig.savefig(os.path.join(f"{os.environ['PROJECT_ROOT']}", "results/posterior_probabilities.png"))
+        fig.savefig(os.path.join(f"{os.environ['PROJECT_ROOT']}", "results/posterior_probabilities_.png"))
 
         plt.close()
 
