@@ -1,3 +1,5 @@
+# Simulating Bayesian Dialogues
+
 This paper introduces an algorithm for the automatic simulation of Bayesian dialogues [1]. Bayesian dialogs is useful framework in game theory for modeling interactions, and in particular consensus reaching between agents in my contexts, e.g., to model trader interactions with financial markets [3], or social interactions [4]. The algorithm allows for the generation of dialogues that embody Bayesian reasoning. In addition to detailing the algorithm’s implementation and key features, we explore the probability of the emergence of non-trivial Bayesian dialogues by conducting random simulations on a vast sample of dialogues. The evaluation of the algorithm provides insights into its performance and the effectiveness of its simulations, underscoring its capability to encapsulate the core of Bayesian reasoning.
 
 This work was presented at the Paris Workshop on Games, Decisions, and Language ([link](https://game-theory.u-paris2.fr/WS2023-program.html)) *Simulating Bayesian Dialogues* by Arsen Pidburachynskyi. The associated internship report can be found in the root directory: `internship_report.pdf`.
@@ -51,7 +53,7 @@ Additionally to this pipeline, we also provide a test.py to check the resilience
 * Consistence when the elements of the agents partitions are permuted.
 * Consistence when the elements of the sets inside the partitions are permuted.
 
-Note that for each of those sets, we reimplemented [2] for sampling uniformly partitions of integers $Nn = {1,…,n}$ (See Theorem 1 of [2]).
+Note that for each of those sets, we reimplemented [2] for sampling uniformly partitions of integers (See Theorem 1 of [2]).
 
 To run the tests, please run 
 
