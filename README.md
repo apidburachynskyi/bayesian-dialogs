@@ -1,8 +1,6 @@
-TODO: Appliqué dans ???
+This paper introduces an algorithm for the automatic simulation of Bayesian dialogues [1]. Bayesian dialogs is useful framework in game theory for modeling interactions, and in particular consensus reaching between agents in my contexts, e.g., to model trader interactions with financial markets [3], or social interactions [4]. The algorithm allows for the generation of dialogues that embody Bayesian reasoning. In addition to detailing the algorithm’s implementation and key features, we explore the probability of the emergence of non-trivial Bayesian dialogues by conducting random simulations on a vast sample of dialogues. The evaluation of the algorithm provides insights into its performance and the effectiveness of its simulations, underscoring its capability to encapsulate the core of Bayesian reasoning.
 
-This paper introduces an algorithm for the automatic simulation of Bayesian dialogues [1], implemented in Python. The algorithm allows for the generation of dialogues that embody Bayesian reasoning. In addition to detailing the algorithm’s implementation and key features, we explore the probability of the emergence of non-trivial Bayesian dialogues by conducting random simulations on a vast sample of dialogues. The evaluation of the algorithm provides insights into its performance and the effectiveness of its simulations, underscoring its capability to encapsulate the core of Bayesian reasoning.
-
-This work was presented at the Paris Workshop on Games, Decisions, and Language ([link](https://game-theory.u-paris2.fr/WS2023-program.html)) *Simulating Bayesian Dialogues* by Arsen Pidburachynskyi.
+This work was presented at the Paris Workshop on Games, Decisions, and Language ([link](https://game-theory.u-paris2.fr/WS2023-program.html)) *Simulating Bayesian Dialogues* by Arsen Pidburachynskyi. The associated internship report can be found in the root directory: `internship_report.pdf`.
 
 The file structure is organized as follows:
 ```
@@ -71,3 +69,7 @@ In this work, we also considered additional problem. Given a set of observed pos
 
 [2] Stam, A.J. (1983). "Generation of a random partition of a finite set by an urn model." Journal of
 Combinatorial Theory, Series A (35) : 231–240.
+
+[3] Avery, Christopher, and Peter Zemsky. "Multidimensional uncertainty and herd behavior in financial markets." American economic review (1998): 724-748.
+
+[4] Golub, Benjamin, and Evan Sadler. "Learning in social networks." Available at SSRN 2919146 (2017).
